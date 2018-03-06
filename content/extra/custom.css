@@ -1,0 +1,18 @@
+@media screen and (min-width: 768px) {
+    aside {
+        width: 20%;
+    }
+}
+
+aside nav ul li a {
+    text-transform: uppercase;
+
+}
+
+a:active {
+    text: expression(target="_self");
+}
+
+a:visited {
+    text: expression(target="_self");
+}

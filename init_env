@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+HERE=$(cd "$(dirname "$0")";pwd)
+python3 -m venv $HERE/venv
+source $HERE/venv/bin/activate
+pip3 install pelican markdown
+git submodule init
+git submodule update

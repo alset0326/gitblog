@@ -1,0 +1,12 @@
+[submodule "output"]
+	path = output
+	url = https://github.com/alset0326/alset0326.github.io.git
+[submodule "themes/attila"]
+	path = themes/attila
+	url = https://github.com/arulrajnet/attila.git
+[submodule "themes/Flex"]
+	path = themes/Flex
+	url = https://github.com/alexandrevicenzi/Flex.git
+[submodule "pelican-plugins"]
+	path = pelican-plugins
+	url = https://github.com/getpelican/pelican-plugins.git
