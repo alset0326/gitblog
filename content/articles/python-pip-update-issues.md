@@ -1,4 +1,4 @@
-Title: python pip update issues
+Title: Python pip update issues
 Date: 2018-03-06 10:42:00.093415
 Modified: 2018-03-06 10:42:00.093415
 Category: python
