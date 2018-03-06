@@ -25,7 +25,7 @@ Summary: python pip issues in ubuntu
     sudo apt install liblapack-dev libblas-dev texinfo libicu-dev 
     ```
 
-- __main__.ConfigurationError: Could not run curl-config: [Errno 2] No such file or directory
+- `__main__.ConfigurationError`: Could not run curl-config: [Errno 2] No such file or directory
 
     ```
     sudo apt install libcurl4-openssl-dev
