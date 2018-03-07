@@ -96,7 +96,7 @@ if choose_theme == 'Flex':
     }
     CUSTOM_CSS = 'static/custom.css'
 
-    # GITHUB_CORNER_URL = 'https://github.com/alset0326'
+    GITHUB_CORNER_URL = 'https://github.com/alset0326/alset0326.github.io'
 
 elif choose_theme == 'attila':
     THEME = './themes/attila'
