@@ -9,10 +9,6 @@ aside nav ul li a {
 
 }
 
-a:active {
-    text: expression(target="_self");
-}
-
-a:visited {
-    text: expression(target="_self");
+.highlight {
+    background-color: #f8f8f8;
 }
