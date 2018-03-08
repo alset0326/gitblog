@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
-
 from datetime import datetime
+import pymdownx.emoji
 
 AUTHOR = 'alset0326'
 SITENAME = '/NOTES'
@@ -100,6 +100,67 @@ if choose_theme == 'Flex':
     GITHUB_CORNER_URL = 'https://github.com/alset0326/alset0326.github.io'
 
     # RELATED_POSTS_MAX = 10
+
+    MARKDOWN = {
+        'extensions': [
+            'markdown.extensions.tables',
+            'markdown.extensions.sane_lists',
+            # 'markdown.extensions.fenced_code',
+            # 'codehilite',
+            'pymdownx.magiclink',
+            'pymdownx.betterem',
+            'pymdownx.tilde',
+            'pymdownx.emoji',
+            'pymdownx.tasklist',
+            'pymdownx.keys',
+            'pymdownx.smartsymbols',
+            'pymdownx.superfences',
+            'pymdownx.highlight',
+            'pymdownx.inlinehilite',
+            'mdx_truly_sane_lists',
+            'markdown_newtab',
+        ],
+
+        'extension_config': {
+            "pymdownx.magiclink": {
+                "repo_url_shortener": True,
+                "repo_url_shorthand": True,
+                "provider": "github",
+                "user": "facelessuser",
+                "repo": "pymdown-extensions"
+            },
+            "pymdownx.tilde": {
+                "subscript": False
+            },
+            "pymdownx.emoji": {
+                "emoji_index": pymdownx.emoji.gemoji,
+                "emoji_generator": pymdownx.emoji.to_png,
+                "alt": "short",
+                "options": {
+                    "attributes": {
+                        "align": "absmiddle",
+                        "height": "20px",
+                        "width": "20px"
+                    },
+                    "image_path": "https://assets-cdn.github.com/images/icons/emoji/unicode/",
+                    "non_standard_image_path": "https://assets-cdn.github.com/images/icons/emoji/"
+                }
+            },
+            'mdx_truly_sane_lists': {
+                'nested_indent': 2,
+                'truly_sane': True,
+            },
+            'pymdownx.highlight': {
+                'css_class': 'highlight',
+                'guess_lang': False,
+                'pygments_style': 'default',
+                'noclasses=': False,
+                'use_pygments': True,
+                'linenums': False,
+                'extend_pygments_lang': []
+            }
+        },
+    }
 
 elif choose_theme == 'attila':
     THEME = './themes/attila'

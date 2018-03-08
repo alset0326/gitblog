@@ -5,5 +5,6 @@ python3 -m venv $HERE/venv
 source $HERE/venv/bin/activate
 pip3 install pelican markdown
 pip3 install bs4 # for plugin post_stats needed
+pip3 install pymdown-extensions pygments-style-github mdx_truly_sane_lists
 git submodule init
 git submodule update
