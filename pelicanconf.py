@@ -73,7 +73,7 @@ if choose_theme == 'Flex':
     COPYRIGHT_NAME = 'alset0326'
     COPYRIGHT_YEAR = '2017-' + str(datetime.now().year)
 
-    PLUGINS = ['sitemap', 'i18n_subsites']
+    PLUGINS = ['sitemap', 'post_stats', 'i18n_subsites']
 
     JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
 
