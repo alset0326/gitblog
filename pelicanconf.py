@@ -32,8 +32,6 @@ DEFAULT_PAGINATION = 20
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
 
-PLUGIN_PATHS = ('pelican-plugins',)
-
 # ######################### Theme settings #########################
 
 choose_theme = 'Flex attila'.split()[0]
@@ -73,7 +71,8 @@ if choose_theme == 'Flex':
     COPYRIGHT_NAME = 'alset0326'
     COPYRIGHT_YEAR = '2017-' + str(datetime.now().year)
 
-    PLUGINS = ['sitemap', 'post_stats', 'i18n_subsites']
+    PLUGIN_PATHS = ('pelican-plugins',)
+    PLUGINS = ('sitemap', 'post_stats', 'i18n_subsites', 'related_posts', 'neighbors')
 
     JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
 
@@ -99,6 +98,8 @@ if choose_theme == 'Flex':
     CUSTOM_CSS = 'static/custom.css'
 
     GITHUB_CORNER_URL = 'https://github.com/alset0326/alset0326.github.io'
+
+    # RELATED_POSTS_MAX = 10
 
 elif choose_theme == 'attila':
     THEME = './themes/attila'
