@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+from datetime import datetime
+
 AUTHOR = 'alset0326'
 SITENAME = '/NOTES'
 SITEURL = 'http://127.0.0.1:8000'
@@ -69,7 +71,7 @@ if choose_theme == 'Flex':
              ('Tags', '/tags.html'),)
 
     COPYRIGHT_NAME = 'alset0326'
-    COPYRIGHT_YEAR = '2017-2018'
+    COPYRIGHT_YEAR = '2017-' + str(datetime.now().year)
 
     PLUGINS = ['sitemap', 'i18n_subsites']
 
