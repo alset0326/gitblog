@@ -16,8 +16,6 @@ Slug: {slug}
 Authors: Alset0326
 Summary: {summary}
 
-# {title}
-
 '''
 
     return template.format(**kwargs)
