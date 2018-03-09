@@ -22,7 +22,7 @@ sudo apt install python python-dev python-pip
 ## 1. install cython
 
 ```
-sudo -H pip install cython==0.25
+sudo -H pip install cython==0.25 # other versions may go wrong
 ```
 
 ## 2. install kivy
@@ -45,15 +45,15 @@ libavcodec-dev \
 zlib1g-dev
 
 # Install gstreamer for audio, video (optional)
-sudo apt-get install -y \
+sudo apt install -y \
 libgstreamer1.0 \
 gstreamer1.0-plugins-base \
 gstreamer1.0-plugins-good
 
 # Note: Depending on your Linux version, you may receive error messages related to the “ffmpeg” package. In this scenario, use “libav-tools ” in place of “ffmpeg ” (above), or use a PPA (as shown below):
 sudo add-apt-repository ppa:mc3man/trusty-media
-sudo apt-get update
-sudo apt-get install ffmpeg
+sudo apt update
+sudo apt install ffmpeg
 
 sudo -H pip install kivy
 ```
@@ -61,10 +61,10 @@ sudo -H pip install kivy
 ## 3. install buildozer
 
 ```
-sudo -H pip install buildozer
 sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt install build-essential ccache git libncurses5:i386 libstdc++6:i386 libgtk2.0-0:i386 libpangox-1.0-0:i386 libpangoxft-1.0-0:i386 libidn11:i386 default-jdk unzip zlib1g-dev zlib1g:i386
+sudo -H pip install buildozer
 ```
 
 ## 4. install python-for-android
@@ -127,3 +127,5 @@ buildozer android debug
 ## 10. fix bug
 
 `cdef` error. Just modify it!
+
+`getaddrinfo()` error. Don't use `proxychains` to run buildozer at last.
