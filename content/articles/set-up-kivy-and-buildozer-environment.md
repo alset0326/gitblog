@@ -129,3 +129,5 @@ buildozer android debug
 `cdef` error. Just modify it!
 
 `getaddrinfo()` error. Don't use `proxychains` to run buildozer at last.
+
+`X Error of failed request:  BadWindow (invalid Window parameter)` error. `multisamples` set to 0 in `~/.kivy/config.ini` , in Ubuntu 17.10.
