@@ -124,7 +124,21 @@ export ANDROIDNDKVER=r9c
 buildozer android debug
 ```
 
-## 10. fix bug
+## 10. release build
+
+set keystore
+
+```
+export P4A_RELEASE_KEYSTORE='absulote path of the keystore'
+export P4A_RELEASE_KEYSTORE_PASSWD=
+export P4A_RELEASE_KEYALIAS=
+export P4A_RELEASE_KEYALIAS_PASSWD=
+buildozer android release
+```
+
+
+
+## 11. fix bug
 
 `cdef` error. Just modify it!
 
