@@ -97,7 +97,7 @@ if choose_theme == 'Flex':
     }
     CUSTOM_CSS = 'static/custom.css'
 
-    GITHUB_CORNER_URL = 'https://github.com/alset0326/alset0326.github.io'
+    GITHUB_CORNER_URL = 'https://github.com/alset0326/alset0326.github.io/issues'
 
     # RELATED_POSTS_MAX = 10
 
