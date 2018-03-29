@@ -105,6 +105,7 @@ if choose_theme == 'Flex':
         'extensions': [
             'markdown.extensions.tables',
             'markdown.extensions.sane_lists',
+            'markdown.extensions.toc',
             # 'markdown.extensions.fenced_code',
             # 'codehilite',
             'pymdownx.b64',
