@@ -107,6 +107,7 @@ if choose_theme == 'Flex':
             'markdown.extensions.sane_lists',
             # 'markdown.extensions.fenced_code',
             # 'codehilite',
+            'pymdownx.b64',
             'pymdownx.magiclink',
             'pymdownx.betterem',
             'pymdownx.tilde',
