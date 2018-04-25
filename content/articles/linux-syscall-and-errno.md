@@ -781,6 +781,7 @@ unistd_32.h
 
 # ERRNO
 
+```
 errno.00 is: Success
 errno.01 is: Operation not permitted
 errno.02 is: No such file or directory
@@ -915,6 +916,7 @@ errno.130 is: Owner died
 errno.131 is: State not recoverable
 errno.132 is: Operation not possible due to RF-kill
 errno.133 is: Memory page has hardware error
+```
 
 Get errno str by
 
