@@ -213,7 +213,7 @@ elif choose_theme == 'm.css':
     M_LINKS_FOOTER1 = (('Projects', github_url + '?tab=repositories'), ('peda-arm', github_url + '/peda-arm'),
                        ('zio3', github_url + '/zio3'),)
     M_LINKS_FOOTER2 = (('Author', '/'), ('Alset0326', SITEURL + '/author/alset0326.html'),)
-    M_LINKS_FOOTER3 = (('Contact', github_url), ('E-mail', 'alset0326@gmail.com'), ('GitHub', github_url),)
+    M_LINKS_FOOTER3 = (('Contact', github_url), ('E-mail', 'mailto:alset0326@gmail.com'), ('GitHub', github_url),)
     # M_FINE_PRINT = SITENAME + '. Powered by `Pelican <https://getpelican.com>`_ and `m.css <http://mcss.mosra.cz>`_.'
 
     # # Twitter settings
@@ -303,3 +303,4 @@ elif choose_theme == 'm.css':
     }
 
 del choose_theme
+del github_url
