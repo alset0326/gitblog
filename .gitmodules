@@ -10,3 +10,6 @@
 [submodule "pelican-plugins"]
 	path = pelican-plugins
 	url = https://github.com/getpelican/pelican-plugins.git
+[submodule "themes/m.css"]
+	path = themes/m.css
+	url = git://github.com/mosra/m.css
