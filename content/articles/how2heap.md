@@ -1,8 +1,8 @@
 Title: How2heap
 Date: 2018-03-26 21:31:10.349398
 Modified: 2018-03-26 21:31:10.349398
-Category: linux
-Tags: linux,heap
+Category: pwn
+Tags: linux,heap,pwn
 Slug: how2heap
 Authors: Alset0326
 Summary: How to exploit heap on linux x64

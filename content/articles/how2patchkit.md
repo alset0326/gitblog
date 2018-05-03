@@ -1,8 +1,8 @@
 Title: How2Patchkit
 Date: 2018-04-04 16:53:30.515707
 Modified: 2018-04-04 16:53:30.515707
-Category: patchkit
-Tags: linux,patchkit
+Category: pwn
+Tags: patch,pwn
 Slug: install-patchkit
 Authors: Alset0326
 Summary: How to use patchkit on osx

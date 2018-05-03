@@ -1,8 +1,8 @@
 Title: Linux Syscall and Errno
 Date: 2018-04-25 10:06:54.096679
 Modified: 2018-04-25 10:06:54.096679
-Category: linux
-Tags: linux
+Category: pwn
+Tags: linux,pwn
 Slug: linux-syscall-and-errno
 Authors: Alset0326
 Summary: Linux syscall and errno description

@@ -2,7 +2,7 @@ Title: Print Function in PWN
 Date: 2018-04-24 15:17:41.501745
 Modified: 2018-04-24 15:17:41.501745
 Category: pwn
-Tags: linux,pwn,print
+Tags: linux,pwn
 Slug: print-function-in-pwn
 Authors: Alset0326
 Summary: Summary for print function in pwn
@@ -32,3 +32,5 @@ int scanf(const char *format, ...);
 ```
 
 读到换行符`\n`为止，可以读入`\x00`，注意格式参数。
+
+`scanf("%256s",buffer)` 会在最后加`'\x00'`，有可能造成`one-byte-off`

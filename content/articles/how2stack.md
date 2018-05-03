@@ -1,8 +1,8 @@
 Title: How2Stack
 Date: 2018-04-05 09:00:17.387858
 Modified: 2018-04-05 09:00:17.387858
-Category: stack
-Tags: stack,linux
+Category: pwn
+Tags: stack,linux,pwn
 Slug: how2stack
 Authors: Alset0326
 Summary: How to stack
@@ -339,86 +339,66 @@ gef➤  x/7i 0x000000000040061d
 
 此外，如果能够溢出的字节较少，那么可以通过“抬栈”操作，例如`jmp esp`之后，可以再`sub esp; jmp esp`，使得能够执行之前的shellcode
 
-# 3. frame faking / double leave
+# 3.0 frame faking
 
-正如这个技巧名字所说的那样，这个技巧就是构造一个虚假的栈帧来控制程序的执行流。
+这个技巧就是构造一个虚假的栈帧指示寄存器（`rbp`）来控制程序的执行流。
 
-使用`leave`指令修改esp
-
-***原理***
-
-概括地讲，我们在之前讲的栈溢出不外乎两种方式
-
-- 控制程序EIP
-- 控制程序EBP
-
-其最终都是控制程序的执行流。在frame faking中，我们所利用的技巧便是同时控制EBP与EIP，这样我们在控制程序执行流的同时，也改变程序栈帧的位置。一般来说其payload如下
-
-```
-buffer padding|fake ebp|leave ret addr|
-```
-
-即我们利用栈溢出将栈上构造为如上格式。这里我们主要接下后面两个部分
-
-- 函数的返回地址被我们覆盖为执行leave ret的地址，这就表明了函数在正常执行完自己的leave ret后，还会再次执行一次leave ret。
-- 其中fake ebp为我们构造的栈帧的基地址，需要注意的是这里是一个地址。一般来说我们构造的假的栈帧如下
-
-```
-fake ebp
-|
-v
-ebp2|target function addr|leave ret addr|arg1|arg2
-```
-
-这里我们的fake ebp指向ebp2，即它为ebp2所在的地址。通常来说，这里都是我们能够控制的可读的内容。
-
-在我们介绍基本的控制过程之前，我们还是有必要说一下，函数的入口点与出口点的基本操作
+注意函数的入口点与出口点的基本操作
 
 入口点
 
 ```
-push ebp  # 将ebp压栈
-mov ebp, esp #将esp的值赋给ebp
+push rbp  # 将rbp压栈
+mov rbp, rsp #将rsp的值赋给rbp
 ```
 
 出口点
 
 ```
-leave
-ret #pop eip，弹出栈顶元素作为程序下一个执行地址
+leave # mov rsp, rbp; pop rbp
+ret #pop rip，弹出栈顶元素作为程序下一个执行地址
 ```
 
-其中leave指令相当于
+其中`leave`指令相当于
 
 ```
-mov esp, ebp # 将ebp的值赋给esp
-pop ebp #弹出ebp
+mov rsp, rbp # 将rbp的值赋给rsp， 注意这里就切栈了，下面的pop是新栈上的
+pop rbp #弹出rbp
 ```
 
-下面我们来仔细说一下基本的控制过程。
+这里，如果我们合理构造栈中的rbp，进入leave指令时，上层函数的rbp就会被影响，而rbp是用来调用栈变量的，因此我们可以影响上层函数对栈变量的引用。
 
-1. 在有栈溢出的程序执行`leave`时，其分为两个步骤
-2. `mov esp, ebp` ，这会将esp也指向当前栈溢出漏洞的ebp基地址处。
-3. `pop ebp`， 这会将栈中存放的fake ebp的值赋给ebp。即执行完指令之后，ebp便指向了ebp2，也就是保存了ebp2所在的地址。
-4. 执行`ret`指令，会再次执行leave ret指令。
-5. 执行`leave`指令，其分为两个步骤
-6. `mov esp, ebp` ，这会将esp指向ebp2。
-7. `pop ebp`，此时，会将ebp的内容设置为ebp2的值，同时esp会指向target function。
-8. 执行`ret`指令，这时候程序就会执行target function，当其进行程序的时候会执行
-9. `push ebp`,会将ebp2值压入栈中，
-10. `mov ebp, esp`，将ebp指向当前基地址。
+# 3.1 frame faking to double leave 
 
-此时的栈结构如下
+这个技巧是构造一个虚假的栈帧来控制程序的执行流。
+
+使用`leave`指令修改rsp
+
+**原理**
+
+概括地讲，我们在之前讲的栈溢出不外乎两种方式
+
+- 控制程序RIP
+- 控制程序RBP
+
+其最终都是控制程序的执行流。在frame faking中，我们所利用的技巧便是同时控制RBP与RIP，这样我们在控制程序执行流的同时，也改变程序栈帧的位置。一般来说其payload如下
 
 ```
-ebp
-|
-v
-ebp2|leave ret addr|arg1|arg2
+buffer padding|fake rbp|leave ret addr|
 ```
 
-1. 当程序执行时，其会正常申请空间，同时我们在栈上也安排了该函数对应的参数，所以程序会正常执行。
-2. 程序结束后，其又会执行两次 leave ret addr，所以如果我们在ebp2处布置好了对应的内容，那么我们就可以一直控制程序的执行流程。
+即我们利用栈溢出将栈上构造为如上格式。这里我们主要接下后面两个部分
+
+- 函数的返回地址被我们覆盖为执行leave ret的地址，这就表明了函数在正常执行完自己的leave ret后，还会再次执行一次leave ret。
+- 其中fake rbp为我们构造的栈帧的基地址，需要注意的是这里是一个地址。一般来说我们构造的假的栈帧如下（fake rbp->)
+
+```
+rbp2|target function addr|leave ret addr
+```
+
+这里我们的fake rbp指向rbp2，即它为rbp2所在的地址。通常来说，这里都是我们能够控制的可读的内容。
+
+程序结束后，其又会执行两次 leave ret addr，所以如果我们在ebp2处布置好了对应的内容，那么我们就可以一直控制程序的执行流程。
 
 可以看出在fake frame中，我们有一个需求就是，我们必须得有一块可以写的内存，并且我们还知道这块内存的地址，这一点与stack privot相似。
 
